@@ -58,6 +58,101 @@ After starting the server, you can access:
 - Swagger UI at: http://localhost:3000/api
 - Scalar API Reference at: http://localhost:3000/scalar
 
+## Rotas Disponíveis
+
+### Autenticação
+
+#### POST /auth/login
+Autenticação de usuário existente.
+
+**Corpo da Requisição:**
+```json
+{
+  "email": "usuario@exemplo.com",
+  "password": "senha123" // mínimo 8 caracteres
+}
+```
+
+**Resposta (200 OK):**
+```json
+{
+  "user": {
+    "id": "string",
+    "name": "string",
+    "email": "string"
+  },
+  "token": "string"
+}
+```
+
+#### POST /auth/signup
+Criação de novo usuário.
+
+**Corpo da Requisição:**
+```json
+{
+  "name": "Nome do Usuário",
+  "email": "usuario@exemplo.com",
+  "password": "senha123" // mínimo 8 caracteres
+}
+```
+
+**Resposta (201 Created):**
+```json
+{
+  "user": {
+    "id": "string",
+    "name": "string",
+    "email": "string"
+  },
+  "token": "string"
+}
+```
+
+### Usuários
+
+#### GET /users/me
+Retorna os dados do usuário autenticado.
+
+**Headers:**
+```
+Authorization: Bearer {token}
+```
+
+**Resposta (200 OK):**
+```json
+{
+  "id": "string",
+  "name": "string",
+  "email": "string"
+}
+```
+
+#### PATCH /users/me
+Atualiza os dados do usuário autenticado.
+
+**Headers:**
+```
+Authorization: Bearer {token}
+```
+
+**Corpo da Requisição (campos opcionais):**
+```json
+{
+  "name": "Novo Nome",
+  "email": "novo@email.com"
+}
+```
+
+**Resposta (200 OK):**
+```json
+{
+  "id": "string",
+  "name": "string",
+  "email": "string"
+}
+```
+
 ## Run tests
 
 ```bash
