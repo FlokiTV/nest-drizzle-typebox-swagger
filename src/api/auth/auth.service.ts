@@ -13,8 +13,8 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 import { user } from '../users/entities/users.entity';
 import { ConnectAuthDto } from './dto/connect-auth.dto';
 import { Config } from '@/providers/config/config.provider';
+import type { DrizzleDB } from '@/drizzle/types/drizzle';
 import { DRIZZLE } from '@/drizzle/drizzle.module';
-import { DrizzleDB } from '@/drizzle/types/drizzle';
 
 @Injectable()
 export class AuthService {

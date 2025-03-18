@@ -1,5 +1,5 @@
 import { DRIZZLE } from '@/drizzle/drizzle.module';
-import { DrizzleDB } from '@/drizzle/types/drizzle';
+import type { DrizzleDB } from '@/drizzle/types/drizzle';
 import {
   ForbiddenException,
   HttpException,
