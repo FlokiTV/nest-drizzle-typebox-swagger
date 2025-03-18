@@ -80,6 +80,11 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/common/$1",
+      "^@api/(.*)$": "<rootDir>/api/$1",
+      "^@db/(.*)$": "<rootDir>/common/drizzle/$1"
+    }
   }
 }
