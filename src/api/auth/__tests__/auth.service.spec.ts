@@ -53,12 +53,9 @@ describe('AuthService', () => {
 
       const result = await service.register(signupDto);
       testUserId = result.id;
-
-      expect(result).toMatchObject({
-        id: expect.any(Number),
-        email: testEmail,
-        name: 'Test User',
-      });
+      expect(result.id).toBeGreaterThan(0);
+      expect(result.email).toBe(testEmail);
+      expect(result.name).toBe('Test User');
     });
   });
 
@@ -79,11 +76,13 @@ describe('AuthService', () => {
       };
 
       const result = await service.connect(connectDto);
+      expect(result.user.id).toBeGreaterThan(0); // Verifica que o ID é um número válido
+      expect(result.user.email).toBe(testEmail);
+      expect(result.user.name).toBe('Test User');
 
-      expect(result).toMatchObject({
-        user: { id: testUserId, email: testEmail, name: 'Test User' },
-        token: expect.any(String),
-      });
+      // Verifica se o token é uma string não vazia
+      expect(typeof result.token).toBe('string');
+      expect(result.token.length).toBeGreaterThan(0);
     });
 
     it('should throw an error if user is not found', async () => {

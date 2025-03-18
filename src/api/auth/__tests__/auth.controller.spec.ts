@@ -51,13 +51,10 @@ describe('AuthController', () => {
         password: testPassword,
         name: 'Test User',
       };
-      const expectedResult = {
-        id: expect.any(Number),
-        email: testEmail,
-        name: 'Test User',
-      };
       const result = await controller.register(signupDto);
-      expect(result).toMatchObject(expectedResult);
+      expect(result.id).toBeGreaterThan(0);
+      expect(result.email).toBe(testEmail);
+      expect(result.name).toBe('Test User');
     });
   });
 
@@ -67,13 +64,14 @@ describe('AuthController', () => {
         email: testEmail,
         password: testPassword,
       };
-      const expectedResult = {
-        user: { id: expect.any(Number), email: testEmail, name: 'Test User' },
-        token: expect.any(String),
-      };
       const result = await controller.connect(connectDto);
-      testUserId = result.user.id;
-      expect(result).toMatchObject(expectedResult);
+
+      expect(result.user.id).toBeGreaterThan(0);
+      expect(result.user.email).toBe(testEmail);
+      expect(result.user.name).toBe('Test User');
+
+      expect(typeof result.token).toBe('string');
+      expect(result.token.length).toBeGreaterThan(0);
     });
   });
 });

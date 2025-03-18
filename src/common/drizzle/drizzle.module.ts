@@ -11,7 +11,7 @@ export const DRIZZLE = Symbol('DRIZZLE');
       provide: DRIZZLE,
       inject: [],
       useFactory() {
-        const sqlite = new Database('database.db') as Database;
+        const sqlite = new Database('database.db');
         const db = drizzle({ client: sqlite, schema });
         return db;
       },
