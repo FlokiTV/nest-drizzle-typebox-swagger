@@ -6,11 +6,14 @@ import { ConfigModule } from '@/providers/config/config.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConnectAuthDto } from '../dto/connect-auth.dto';
 import { SignupAuthDto } from '../dto/signup-auth.dto';
+import { UsersService } from '@api/users/users.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
   const testEmail = `test-${Date.now()}@example.com`;
   const testPassword = 'password123';
+  let testUserId: number | null = null;
+  let usersService: UsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,9 +27,17 @@ describe('AuthController', () => {
         }),
       ],
       controllers: [AuthController],
-      providers: [AuthService],
+      providers: [AuthService, UsersService],
     }).compile();
     controller = module.get<AuthController>(AuthController);
+    usersService = module.get<UsersService>(UsersService);
+  });
+
+  afterEach(async () => {
+    if (testUserId) {
+      await usersService.deleteById(testUserId);
+      testUserId = null;
+    }
   });
 
   it('should be defined', () => {
@@ -61,6 +72,7 @@ describe('AuthController', () => {
         token: expect.any(String),
       };
       const result = await controller.connect(connectDto);
+      testUserId = result.user.id;
       expect(result).toMatchObject(expectedResult);
     });
   });
