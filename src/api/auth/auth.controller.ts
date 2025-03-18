@@ -24,7 +24,7 @@ export class AuthController {
     response: Type.Object({
       user: Type.Omit(selectUserSchema, ['password']),
       token: Type.String(),
-    })
+    }),
   })
   connect(@Body() connectAuthDto: ConnectAuthDto) {
     return this.authService.connect(connectAuthDto);
@@ -66,9 +66,9 @@ export class AuthController {
     },
   })
   @Validate({
-    response: Type.Object({
-      ok: Type.Boolean(),
-    }),
+    // response: Type.Object({
+    //   ok: Type.Boolean(),
+    // }),
     request: [
       {
         type: 'body',
@@ -76,7 +76,7 @@ export class AuthController {
       },
     ],
   })
-  register(@Body() createUserDto: SignupAuthDto, @Req() req: Request) {
-    return this.authService.register(req, createUserDto);
+  register(@Body() createUserDto: SignupAuthDto) {
+    return this.authService.register(createUserDto);
   }
 }

@@ -13,7 +13,6 @@ export const SignupAuthSchema = Type.Object({
     default: 'password123',
     description: "The user's password",
   }),
-  referer: Type.Optional(Type.String()),
 });
 
 export type SignupAuthDto = Static<typeof SignupAuthSchema>;
