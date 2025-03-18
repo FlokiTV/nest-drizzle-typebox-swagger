@@ -4,16 +4,13 @@ import {
   HttpStatus,
   Inject,
   Injectable,
-  Req,
 } from '@nestjs/common';
 import { checkPassword, encryptPassword, isEmailValid } from './utils';
 import { JwtService } from '@nestjs/jwt';
 import { eq } from 'drizzle-orm';
-import { Request } from 'express';
 import { SelectUserDto } from '../users/dto/select-user.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { user } from '../users/entities/users.entity';
-import { UpdateUserDto } from '../users/dto/update-user.dto';
 import { ConnectAuthDto } from './dto/connect-auth.dto';
 import { Config } from '@/providers/config/config.provider';
 import { DRIZZLE } from '@/drizzle/drizzle.module';
