@@ -78,12 +78,12 @@ export class AuthService {
   async register(createUserDto: CreateUserDto) {
     const isValidEmail = await isEmailValid(createUserDto.email);
     if (!isValidEmail) throw new ForbiddenException('Invalid email');
-    
+
     await this.verifyEmailExists(createUserDto.email);
 
     const hashedPassword = await encryptPassword(createUserDto.password);
 
-    const userNow = await this.db
+    const [userNow] = await this.db
       .insert(user)
       .values({ ...createUserDto, password: hashedPassword })
       .returning();

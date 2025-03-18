@@ -47,13 +47,13 @@ async function hasValidDomain(email) {
 
 export async function isEmailValid(email: string) {
   if (!isValidEmailFormat(email)) {
-    console.log('Formato de e-mail inválido:', email);
+    console.error('Formato de e-mail inválido:', email);
     return false;
   }
 
   const domainValid = await hasValidDomain(email);
   if (!domainValid) {
-    console.log('Domínio do e-mail inválido:', email);
+    console.error('Domínio do e-mail inválido:', email);
     return false;
   }
 
