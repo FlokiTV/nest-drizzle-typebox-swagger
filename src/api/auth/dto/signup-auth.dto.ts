@@ -7,7 +7,6 @@ export const SignupAuthSchema = Type.Object({
   }),
   email: Type.String({
     description: "The user's email address",
-    format: 'email',
   }),
   password: Type.String({
     description: "The user's password",
