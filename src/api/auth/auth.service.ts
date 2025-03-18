@@ -53,7 +53,7 @@ export class AuthService {
       throw new HttpException(
         {
           statusCode: HttpStatus.NO_CONTENT,
-          message: 'Incorrect password',
+          message: 'Invalid credentials',
         },
         HttpStatus.CONFLICT,
       );
