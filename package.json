@@ -24,6 +24,8 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.0.6",
+    "@scalar/nestjs-api-reference": "^0.4.1",
     "@sinclair/typebox": "^0.34.30",
     "better-sqlite3": "^11.9.1",
     "drizzle-kit": "^0.30.5",
