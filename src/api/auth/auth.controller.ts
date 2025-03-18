@@ -14,6 +14,23 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/login')
+  @ApiResponse({
+    status: 204,
+    description: 'User not found',
+    content: {
+      'application/json': {
+        examples: {
+          userNotFound: {
+            summary: 'Response',
+            value: {
+              statusCode: 204,
+              message: 'User not found',
+            },
+          },
+        },
+      },
+    },
+  })
   @Validate({
     request: [
       {
@@ -66,15 +83,13 @@ export class AuthController {
     },
   })
   @Validate({
-    // response: Type.Object({
-    //   ok: Type.Boolean(),
-    // }),
     request: [
       {
         type: 'body',
         schema: SignupAuthSchema,
       },
     ],
+    response: Type.Omit(selectUserSchema, ['password']),
   })
   register(@Body() createUserDto: SignupAuthDto) {
     return this.authService.register(createUserDto);
