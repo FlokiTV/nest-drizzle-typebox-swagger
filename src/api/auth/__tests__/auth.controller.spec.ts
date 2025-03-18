@@ -52,6 +52,7 @@ describe('AuthController', () => {
         name: 'Test User',
       };
       const result = await controller.register(signupDto);
+      testUserId = result.id;
       expect(result.id).toBeGreaterThan(0);
       expect(result.email).toBe(testEmail);
       expect(result.name).toBe('Test User');
@@ -60,6 +61,15 @@ describe('AuthController', () => {
 
   describe('connect (POST /login)', () => {
     it('should call authService.connect and return its result', async () => {
+      const signupDto: SignupAuthDto = {
+        email: testEmail,
+        password: testPassword,
+        name: 'Test User',
+      };
+
+      const register = await controller.register(signupDto);
+      testUserId = register.id;
+
       const connectDto: ConnectAuthDto = {
         email: testEmail,
         password: testPassword,
