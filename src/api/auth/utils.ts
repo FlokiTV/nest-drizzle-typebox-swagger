@@ -1,20 +1,24 @@
 import * as crypto from 'crypto';
 import { resolveMx } from 'dns/promises';
 
-export const encryptPassword = async (password: string): Promise<string> => {
+export const encryptPassword = (password: string): string => {
   if (!password) return '';
   const salt = crypto.randomBytes(16).toString('hex');
-  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  const hash = crypto
+    .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
+    .toString('hex');
   return `${salt}:${hash}`;
 };
 
-export const checkPassword = async (
+export const checkPassword = (
   password: string,
   hashedPassword: string,
-): Promise<boolean> => {
+): boolean => {
   if (!password || !hashedPassword) return false;
   const [salt, storedHash] = hashedPassword.split(':');
-  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  const hash = crypto
+    .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
+    .toString('hex');
   return storedHash === hash;
 };
 
@@ -30,12 +34,12 @@ export function generateOTP(length = 6) {
   return otp;
 }
 
-function isValidEmailFormat(email) {
+function isValidEmailFormat(email: string) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-async function hasValidDomain(email) {
+async function hasValidDomain(email: string) {
   const domain = email.split('@')[1];
   try {
     const addresses = await resolveMx(domain);

@@ -49,7 +49,7 @@ export class AuthService {
       );
     }
 
-    if (!(await checkPassword(connectAuthDto.password, userNow.password))) {
+    if (!checkPassword(connectAuthDto.password, userNow.password)) {
       throw new HttpException(
         {
           statusCode: HttpStatus.NO_CONTENT,
@@ -78,7 +78,7 @@ export class AuthService {
 
     await this.verifyEmailExists(createUserDto.email);
 
-    const hashedPassword = await encryptPassword(createUserDto.password);
+    const hashedPassword = encryptPassword(createUserDto.password);
 
     const [userNow] = await this.db
       .insert(user)

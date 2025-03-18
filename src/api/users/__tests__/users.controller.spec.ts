@@ -5,7 +5,6 @@ import { ConfigModule } from '@/providers/config/config.module';
 import { JwtModule } from '@nestjs/jwt';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { AuthService } from '@api/auth/auth.service';
-import { ConnectAuthDto } from '@api/auth/dto/connect-auth.dto';
 
 describe('UsersService', () => {
   let usersService: UsersService;

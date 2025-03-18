@@ -50,4 +50,6 @@ async function bootstrap() {
     console.log('-----------------------');
   });
 }
-bootstrap();
+bootstrap().catch((err) => {
+  console.error(err);
+});
