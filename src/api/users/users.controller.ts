@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Patch, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard, Payload } from '@/guards/auth.guard';
@@ -10,8 +17,7 @@ export class UsersController {
   @Get('/me')
   me(@Request() req: Payload) {
     const user = req.user;
-    return user
-    // return this.usersService.me(user.id);
+    return this.usersService.me(user.id);
   }
 
   @UseGuards(AuthGuard)

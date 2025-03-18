@@ -1,16 +1,15 @@
+import { Config } from '@/providers/config/config.provider';
 import {
   CanActivate,
   ExecutionContext,
-  Inject,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { Config } from '../providers/config/config.provider';
 
 export interface Payload extends Request {
-  user: { idUser: string };
+  user: { id: number };
 }
 
 @Injectable()

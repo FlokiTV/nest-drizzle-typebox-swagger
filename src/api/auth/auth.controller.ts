@@ -79,29 +79,4 @@ export class AuthController {
   register(@Body() createUserDto: SignupAuthDto, @Req() req: Request) {
     return this.authService.register(req, createUserDto);
   }
-
-  @Get('/email/verify/:email')
-  verify(@Param('email') email: string) {
-    return this.authService.verifyEmailExists(email);
-  }
-
-  @Get('/email/resend-activation/:email')
-  resendActive(@Param('email') email: string) {
-    return this.authService.sendEmailVerification(email);
-  }
-
-  @Get('/account/activate/:token')
-  active(@Param('token') token: string) {
-    return this.authService.activeAccount(token);
-  }
-
-  @Get('/password/reset-request/:email')
-  resetPass(@Param('email') email: string) {
-    return this.authService.sendPasswordReset(email);
-  }
-
-  @Post('/password/reset/:token')
-  changePass(@Param('token') token: string, @Body() body: ResetPassDto) {
-    return this.authService.resetPassword(token, body.password);
-  }
 }

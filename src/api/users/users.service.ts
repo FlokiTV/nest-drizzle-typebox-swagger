@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
-  async getById(id: number) {
+  async me(id: number) {
     return '';
   }
 }
