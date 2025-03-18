@@ -1,7 +1,5 @@
-import { Controller, Get, Post, Body, Param, Req } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ResetPassDto } from './dto/reset-pass-auth.dto';
-import { Request } from 'express';
 import { Validate } from 'nestjs-typebox';
 import { ConnectAuthDto, ConnectAuthSchema } from './dto/connect-auth.dto';
 import { SignupAuthDto, SignupAuthSchema } from './dto/signup-auth.dto';
