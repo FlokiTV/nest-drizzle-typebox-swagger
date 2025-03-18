@@ -2,16 +2,16 @@ import { Static, Type } from '@sinclair/typebox';
 
 export const SignupAuthSchema = Type.Object({
   name: Type.String({
-    default: 'John Doe',
     description: "The user's name",
+    minLength: 1,
   }),
   email: Type.String({
-    default: 'test@example.com',
     description: "The user's email address",
+    format: 'email',
   }),
   password: Type.String({
-    default: 'password123',
     description: "The user's password",
+    minLength: 8,
   }),
 });
 
