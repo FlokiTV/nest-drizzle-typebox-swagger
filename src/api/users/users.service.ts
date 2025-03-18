@@ -31,7 +31,7 @@ export class UsersService {
     return me;
   }
 
-  async updatadeById(id: number, updateUserDto: UpdateUserDto) {
+  async updateById(id: number, updateUserDto: UpdateUserDto) {
     // Check if updateUserDto is empty
     if (!Object.keys(updateUserDto).length)
       throw new ForbiddenException('Access Denied');

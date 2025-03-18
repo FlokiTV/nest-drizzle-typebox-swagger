@@ -79,6 +79,6 @@ export class UsersController {
   })
   update(@Body() updateUserDto: UpdateUserDto, @Request() req: Payload) {
     const user = req.user;
-    return this.usersService.updatadeById(user.id, updateUserDto);
+    return this.usersService.updateById(user.id, updateUserDto);
   }
 }
