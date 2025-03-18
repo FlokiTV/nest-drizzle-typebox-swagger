@@ -52,7 +52,7 @@ describe('AuthService', () => {
       };
 
       const result = await service.register(signupDto);
-      testUserId = result.id; // Armazena o ID para deletar depois
+      testUserId = result.id;
 
       expect(result).toMatchObject({
         id: expect.any(Number),
@@ -64,7 +64,6 @@ describe('AuthService', () => {
 
   describe('connect', () => {
     it('should return user and token when credentials are correct', async () => {
-      // Primeiro, registramos o usuário
       const signupDto: SignupAuthDto = {
         email: testEmail,
         password: testPassword,
@@ -74,7 +73,6 @@ describe('AuthService', () => {
       const registeredUser = await service.register(signupDto);
       testUserId = registeredUser.id;
 
-      // Agora, tentamos fazer login
       const connectDto: ConnectAuthDto = {
         email: testEmail,
         password: testPassword,
@@ -84,7 +82,7 @@ describe('AuthService', () => {
 
       expect(result).toMatchObject({
         user: { id: testUserId, email: testEmail, name: 'Test User' },
-        token: expect.any(String), // O token gerado pode variar
+        token: expect.any(String),
       });
     });
 
@@ -100,7 +98,6 @@ describe('AuthService', () => {
     });
 
     it('should throw an error if password is incorrect', async () => {
-      // Primeiro, registramos o usuário
       const signupDto: SignupAuthDto = {
         email: testEmail,
         password: testPassword,
