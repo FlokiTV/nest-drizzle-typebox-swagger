@@ -16,6 +16,7 @@ export class UsersService {
   constructor(@Inject(DRIZZLE) private db: DrizzleDB) {}
 
   async getById(id: number) {
+    console.log(id)
     const me = await this.db.query.user.findFirst({
       where: (user, { eq }) => eq(user.id, id),
     });

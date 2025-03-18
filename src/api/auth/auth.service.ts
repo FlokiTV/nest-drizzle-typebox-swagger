@@ -28,7 +28,7 @@ export class AuthService {
   ) {}
 
   jwt(user: SelectUserDto) {
-    const payload = { idUser: user.id };
+    const payload = { id: user.id };
     const token = this.jwtService.sign(payload, {
       secret: this.cfg.jwt(),
     });
