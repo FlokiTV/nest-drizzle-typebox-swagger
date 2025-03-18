@@ -53,4 +53,21 @@ export class UsersService {
       throw new ForbiddenException('Access Denied');
     }
   }
+
+  async deleteById(id: number) {
+    await this.getById(id);
+    try {
+      const [success] = await this.db
+        .delete(user)
+        .where(eq(user.id, Number(id)))
+        .returning();
+
+      if (!success) throw new Error('User not found');
+
+      return success;
+    } catch (error) {
+      console.error('Error:', error);
+      throw new ForbiddenException('Access Denied');
+    }
+  }
 }

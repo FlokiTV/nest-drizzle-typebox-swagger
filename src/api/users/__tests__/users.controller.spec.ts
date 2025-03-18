@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from '../users.controller';
 import { UsersService } from '../users.service';
 import { DrizzleModule } from '@/drizzle/drizzle.module';
-import { AuthModule } from '@api/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@/providers/config/config.module';
 
